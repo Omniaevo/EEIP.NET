@@ -29,4 +29,4 @@ For Data Exchange with Ethernet/IP Devices
 - Object Library with CIP-Definined Objects
 - Provides a simple way to access Ethernet/IP Devices without special knowledge about Ethernet/IP
 
-[Implementation Guide and documentation](http://www.eeip-library.de)
+[Implementation Guide and documentation](https://web.archive.org/web/20230327163405/http://eeip-library.de/)
