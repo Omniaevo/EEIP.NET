@@ -914,7 +914,7 @@ namespace Sres.Net.EEIP
                     
                     // Data callback
 
-                    if (OnNewData != null) OnNewData.Invoke(this, new EventDataObject(eventData));
+                    if (OnNewData != null) OnNewData.Invoke(this, new EventDataObject(eventData, DateTime.Now));
                 }
             }
             LastReceivedImplicitMessage = DateTime.Now;

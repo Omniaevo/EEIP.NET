@@ -11,7 +11,8 @@ The general usage of the `rossmann-engineering/EEIP.NET` remains the same with a
 ```c#
 eeipClient.OnNewData += (sender, args) =>
 {
-  byte[] T_O_IOData = args.T_O_IOData;
+  byte[] T_O_IOData = ((EventDataObject)args).T_O_IOData;
+  DateTime LastReceivedImplicitMessage = ((EventDataObject)args).LastReceivedImplicitMessage;
 
   // Do something with "T_O_IOData" ...
 };
