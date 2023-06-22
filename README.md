@@ -1,4 +1,26 @@
 # EEIP.NET
+
+## Disclaimer
+
+- Original library: [rossmann-engineering/EEIP.NET](https://github.com/rossmann-engineering/EEIP.NET);
+- Forked library: [scienta-scientific/EEIP.NET](https://github.com/scienta-scientific/EEIP.NET), base of our fork because of the porting to `netstandard2.0`;
+- Our fork: [Omniaevo/EEIP.NET](https://github.com/Omniaevo/EEIP.NET), where we have adopted an event-based approach.
+
+The general usage of the `rossmann-engineering/EEIP.NET` remains the same with an added event emitter `OnNewData`, you can subscribe to it by:
+
+```c#
+eeipClient.OnNewData += (sender, args) =>
+{
+  // WARNING: args does not contain any data, this callback is intended to
+  //          warn about new data received. The actual bytes have to be read
+  //          as in the original Rossmann's library.
+
+  // Do something ...
+};
+```
+
+## Description
+
 Ethernet/IP compatible library for .NET implementations
 Supports IO Scanner and Explicit Message Client functionality
 For Data Exchange with Ethernet/IP Devices
@@ -7,6 +29,4 @@ For Data Exchange with Ethernet/IP Devices
 - Object Library with CIP-Definined Objects
 - Provides a simple way to access Ethernet/IP Devices without special knowledge about Ethernet/IP
 
-<a href="http://www.eeip-library.de">Implementation Guide and documentation</a>
-
-<a href="https://sourceforge.net/projects/eeip-net/files/latest/download" rel="nofollow"><img alt="Download EEIP.NET" src="https://a.fsdn.com/con/app/sf-download-button"></a>
+[Implementation Guide and documentation](http://www.eeip-library.de)

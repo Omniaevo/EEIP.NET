@@ -18,6 +18,7 @@ namespace Sres.Net.EEIP
         UInt32 connectionID_T_O;
         UInt32 multicastAddress;
         UInt16 connectionSerialNumber;
+
         /// <summary>
         /// TCP-Port of the Server
         /// </summary>
@@ -128,6 +129,11 @@ namespace Sres.Net.EEIP
         /// Could be used to determine a Timeout
         /// </summary>        
         public DateTime LastReceivedImplicitMessage { get; set; }
+
+        /// <summary>
+        /// Subscribe to this event handler to get update on data reception.
+        /// </summary>
+        public event EventHandler OnNewData;
     
         public EEIPClient()
         {
@@ -899,9 +905,10 @@ namespace Sres.Net.EEIP
                     {
                         T_O_IOData[i] = receiveBytes[20 + i + headerOffset];
                     }
-                    //Console.WriteLine(T_O_IOData[0]);
+                    
+                    // Data callback
 
-
+                    if (OnNewData != null) OnNewData.Invoke(this, null);
                 }
             }
             LastReceivedImplicitMessage = DateTime.Now;
