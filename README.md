@@ -11,11 +11,9 @@ The general usage of the `rossmann-engineering/EEIP.NET` remains the same with a
 ```c#
 eeipClient.OnNewData += (sender, args) =>
 {
-  // WARNING: args does not contain any data, this callback is intended to
-  //          warn about new data received. The actual bytes have to be read
-  //          as in the original Rossmann's library.
+  byte[] T_O_IOData = args.T_O_IOData;
 
-  // Do something ...
+  // Do something with "T_O_IOData" ...
 };
 ```
 

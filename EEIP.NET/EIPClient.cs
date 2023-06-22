@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Sres.Net.EEIP.ObjectLibrary;
 
 namespace Sres.Net.EEIP
 {
@@ -897,18 +898,23 @@ namespace Sres.Net.EEIP
                 if (connectionID == connectionID_T_O)
                 {
                     ushort headerOffset = 0;
+
                     if (T_O_RealTimeFormat == RealTimeFormat.Header32Bit)
                         headerOffset = 4;
                     if (T_O_RealTimeFormat == RealTimeFormat.Heartbeat)
                         headerOffset = 0;
+
+                    byte[] eventData = new byte[T_O_IOData.Length];
+
                     for (int i = 0; i < receiveBytes.Length-20-headerOffset; i++)
                     {
                         T_O_IOData[i] = receiveBytes[20 + i + headerOffset];
+                        eventData[i] = T_O_IOData[i];
                     }
                     
                     // Data callback
 
-                    if (OnNewData != null) OnNewData.Invoke(this, null);
+                    if (OnNewData != null) OnNewData.Invoke(this, new EventDataObject(eventData));
                 }
             }
             LastReceivedImplicitMessage = DateTime.Now;
